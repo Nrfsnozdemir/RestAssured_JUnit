@@ -6,13 +6,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class SpartanGetRequest {
 
-    String baseUrl = "http://3.85.122.36:8000/";
+    String baseUrl = "http://3.85.122.36:8000";
 
     /*
     Given Accept Type is application/json
@@ -25,7 +26,7 @@ public class SpartanGetRequest {
     @Test
     public void test1() {
         Response response = given().accept(ContentType.JSON)
-                .when().get(baseUrl + "api/spartans");
+                .when().get(baseUrl + "/api/spartans");
 
         assertEquals(200, response.statusCode());
         assertEquals("application/json", response.contentType());
@@ -39,11 +40,11 @@ public class SpartanGetRequest {
     And json body should contain Fidole
      */
 
-    @DisplayName("GET one spartan and verify")
+    @DisplayName("GET request to /api/spartans/3")
     @Test
     public void test2() {
         Response response = given().accept(ContentType.JSON)
-                .when().get(baseUrl + "api/spartans/3");
+                .when().get(baseUrl + "/api/spartans/3");
 
         assertEquals(200, response.statusCode());
         assertEquals("application/json", response.contentType());
@@ -59,5 +60,17 @@ public class SpartanGetRequest {
     And Content-Length should be 17
     And body should be "Hello from Sparta"
      */
+
+    @DisplayName("GET request to /api/hello")
+    @Test
+    public void test3() {
+        Response response = when().get(baseUrl + "/api/hello");
+
+        assertEquals(200, response.statusCode());
+        assertEquals("text/plain;charset=UTF-8", response.contentType());
+        assertTrue(response.headers().hasHeaderWithName("date"));
+        assertEquals("17", response.header("Content-Length"));
+        assertEquals("Hello from Sparta", response.body().asString());
+    }
 
 }
