@@ -1,8 +1,8 @@
 package com.spartan.get;
 
+import com.utilities.SpartanTestBase;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,15 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class SpartanGetRequest {
+public class SpartanWithContains extends SpartanTestBase {
 
-    @BeforeAll
-    public static void init() {
-        baseURI = "http://3.85.122.36:8000";
-    }
     /*
     Given Accept Type is application/json
     When user sends a GET request to api/spartans end point
