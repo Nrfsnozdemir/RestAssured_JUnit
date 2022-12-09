@@ -8,7 +8,8 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-@JsonIgnoreProperties()
+@JsonIgnoreProperties(ignoreUnknown = false)
+
 public class Spartan {
 
     private int id;
