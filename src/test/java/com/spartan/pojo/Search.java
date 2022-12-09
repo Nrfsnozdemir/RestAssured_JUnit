@@ -10,7 +10,8 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@JsonIgnoreProperties
+@JsonIgnoreProperties(ignoreUnknown = false)
+
 public class Search {
 
     private List<Spartan> content;
