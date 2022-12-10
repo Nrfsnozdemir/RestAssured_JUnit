@@ -8,7 +8,8 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-@JsonIgnoreProperties(ignoreUnknown = false)
+@JsonIgnoreProperties(value="id", allowGetters = true)
+//we need id for deserialization but we wanna exclude the id for serialization(post req)
 
 public class Spartan {
 
